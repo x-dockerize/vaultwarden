@@ -26,14 +26,14 @@ services:
 
       # Ana uygulama
       - traefik.http.routers.vaultwarden.rule=Host(`${VAULTWARDEN_SERVER_HOSTNAME:?required}`)
-      - traefik.http.routers.vaultwarden.entrypoints=websecure
-      - traefik.http.routers.vaultwarden.tls.certresolver=le-cloudflare
+      - traefik.http.routers.vaultwarden.entrypoints=https
+      - traefik.http.routers.vaultwarden.tls.certresolver=cloudflare
       - traefik.http.routers.vaultwarden.service=vaultwarden
 
       # Admin panel — IP kısıtlamalı
       - traefik.http.routers.vaultwarden-admin.rule=Host(`${VAULTWARDEN_SERVER_HOSTNAME:?required}`) && PathPrefix(`/admin`)
-      - traefik.http.routers.vaultwarden-admin.entrypoints=websecure
-      - traefik.http.routers.vaultwarden-admin.tls.certresolver=le-cloudflare
+      - traefik.http.routers.vaultwarden-admin.entrypoints=https
+      - traefik.http.routers.vaultwarden-admin.tls.certresolver=cloudflare
       - traefik.http.routers.vaultwarden-admin.middlewares=trusted@file
       - traefik.http.routers.vaultwarden-admin.service=vaultwarden
 
